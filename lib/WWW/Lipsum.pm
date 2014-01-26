@@ -95,6 +95,8 @@ sub _prep_args {
         
         $self->amount( $args{amount} );
     }
+    
+    return;
 }
 
 q|
@@ -105,6 +107,8 @@ and pass it around, 4294967295 bottles of beer on the wall!
 __END__
 
 =encoding utf8
+
+=for stopwords BackPAN Ipsum lipsum Lorem www.lipsum.com. Znet Zoffix
 
 =head1 NAME
  
@@ -142,7 +146,7 @@ WWW::Lipsum - perl interface to www.lipsum.com
 =head1 DESCRIPTION
 
 Generate I<Lorem Ipsum> place holder text from perl, using
-L<www.lipsum.com>
+L<www.lipsum.com> glerereg
 
 =head1 SEE ALSO
 
@@ -162,7 +166,10 @@ using a web service.
 
 Creates and returns a brand new C<WWW::Lipsum> object. Takes
 a number of B<optional> arguments that are given as key/value
-pairs. Possible arguments are as follows:
+pairs. These specify the format of the generated lipsum
+text and can be changed either individually, using the 
+appropriate accessor methods, or when calling C<< ->generate >> method.
+Possible arguments are as follows:
 
 =head3 C<what>
 
@@ -179,9 +186,10 @@ B<Defaults to:> C<paras>.
 
 The meaning is most relevant for the C<amount> argument (see below). The 
 C<lists> value will cause generation of variable-item-number lists of
-I<Lorem Ipsum> text. B<Note:> there seems to be very loose adherance
-to the C<amount> you get when you request C<bytes>, and the value seems
-to be ignored if C<amount> is set too low.
+I<Lorem Ipsum> text. B<Note:> there seems to be very loose adherence
+to the C<amount> you specified and what you get when you
+request C<bytes>, and the value seems to be ignored
+if C<amount> is set too low.
 
 =head3 C<amount>
 
@@ -231,7 +239,12 @@ B<On success> returns generated I<Lorem Ipsum> text. B<On failure>
 returns C<undef> or an empty list, depending on the context, and
 the reason for failure will be available via the C<< ->error >> method.
 
-You can call this method by simply interpolating the C<WWW::Lipsum>
+B<Note:> if you call C<< ->generate >> with arguments, the new 
+values will persist for all subsequent calls to C<< ->generate >>,
+until you change them either by, again, passing arguments to
+C<< ->generate >>, or by using accessor methods.
+
+You can call C<< ->generate >> by simply interpolating the C<WWW::Lipsum>
 object in a string. When called this way, if an error occurs, the
 interpolated value will be C<[Error: ERROR_DESCRIPTION_HERE]>, where
 C<ERROR_DESCRIPTION_HERE> is the return value of C<< ->error >> method.
@@ -340,7 +353,7 @@ by Earle Martin. I have a couple of modules that depend on
 C<WWW::Lipsum>. Earle, or someone else, subsequently deleted it from
 CPAN, leaving my modules dead.
 
-At first, I resurected Earle's version, but it had a bug. The code
+At first, I resurrected Earle's version, but it had a bug. The code
 was using L<HTML::TokeParser> and was a pain in the butt
 to maintain, and the interface really irked me.
 So, I rewrote the whole thing from scratch, broke the API
@@ -349,3 +362,4 @@ So, I rewrote the whole thing from scratch, broke the API
 If you are looking for Earle's version, it can still be accessed on
 L<BackPAN|http://backpan.perl.org/authors/id/E/EM/EMARTIN/>.
 
+=cut
