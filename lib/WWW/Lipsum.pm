@@ -220,6 +220,9 @@ to a true value, will ask L<www.lipsum.com|http://www.lipsum.com/>
 to start the generated
 text with I<"Lorem Ipsum">. B<Defaults to:> C<1> (true)
 
+B<Note:> it seems sometimes L<www.lipsum.com|http://www.lipsum.com/>
+would return text that starts with I<"Lorem Ipsum"> simply by chance.
+
 =head2 C<generate>
 
     my $text = $lipsum->generate(
