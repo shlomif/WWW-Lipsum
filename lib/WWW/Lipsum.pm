@@ -54,10 +54,12 @@ sub generate {
 
     $self->html
         or return $self->lipsum(
-            join "\n\n", map $_->all_text, $dom->find('p')->each
+            join "\n\n", map $_->all_text,
+                $dom->grep(sub{ $_->tag eq 'p'})->each
         );
 
-    my $html = "$dom";
+    my $html = join '', $dom->each;
+
     # a little hackery to get rid of lipsum.com's invalid markup
     $self->what eq 'lists' and $html =~ s{<p>|</p>}{}gi;
     $html =~ s/^\s+|\s+$//g;

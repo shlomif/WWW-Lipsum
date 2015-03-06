@@ -1,5 +1,8 @@
 Revision history for WWW-Lipsum
 
+1.001009  2015-03-05
+        - Fixed failures with newer Mojolicious (Issue #2)
+
 1.001008  2014-02-10
         - Fixed up the tests that failed when there was no network
 
