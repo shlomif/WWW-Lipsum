@@ -1,5 +1,9 @@
 Revision history for WWW-Lipsum
 
+1.001010  2015-03-06
+        - Updated prereq version requirements to newer versions;
+          previous versions fail
+
 1.001009  2015-03-05
         - Fixed failures with newer Mojolicious (Issue #2)
 

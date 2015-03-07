@@ -13,13 +13,11 @@ WWW::Lipsum - perl interface to www.lipsum.com
     print "$lipsum\n"; # auto-fetches lipsum text
 
 
-
     # Change an arg and check for errors explicitly
     $lipsum->generate( html => 0 )
         or die "Error: " . $lipsum->error;
 
     print $lipsum->lipsum . "\n";
-
 
 
     # Change some args and fetch using interpolation overload
@@ -31,8 +29,6 @@ WWW::Lipsum - perl interface to www.lipsum.com
 
     # generate a whole bunch of lipsums
     my @lipsums = map "$lipsum", 1..10;
-
-
 
 # DESCRIPTION
 
