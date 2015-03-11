@@ -1,5 +1,9 @@
 Revision history for WWW-Lipsum
 
+1.001011  2015-03-10
+        - Fixes #5 (Failing tests)
+        - Fixes #4 (Missing version in example script)
+
 1.001010  2015-03-06
         - Updated prereq version requirements to newer versions;
           previous versions fail

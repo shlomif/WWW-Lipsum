@@ -51,6 +51,7 @@ sub generate {
             ->children;
     };
     @$ and return $self->_set_error("Parsing error: $@");
+    $dom or return $self->_set_error("Unknown error");
 
     $self->html
         or return $self->lipsum(
