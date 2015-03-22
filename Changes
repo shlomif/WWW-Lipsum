@@ -1,5 +1,11 @@
 Revision history for WWW-Lipsum
 
+1.001012  2015-03-21
+        - Attempted to resolve cases where we get 'Unknown error'
+          and expanded the error message so we could debug
+          this further, should it reappears in CPAN TESTERS
+          reports (Fixes #6)
+
 1.001011  2015-03-10
         - Fixes #5 (Failing tests)
         - Fixes #4 (Missing version in example script)
@@ -39,3 +45,4 @@ Revision history for WWW-Lipsum
 1.001001  2014-01-25
         - Complete rewrite from scratch; taken over the namespace from
           the previous author who deleted his WWW-Lipsum
+

@@ -52,7 +52,7 @@ using a web service.
     );
 
 Creates and returns a brand new `WWW::Lipsum` object. Takes
-a number of __optional__ arguments that are given as key/value
+a number of **optional** arguments that are given as key/value
 pairs. These specify the format of the generated lipsum
 text and can be changed either individually, using the
 appropriate accessor methods, or when calling `->generate` method.
@@ -65,15 +65,15 @@ Possible arguments are as follows:
     my $lipsum = WWW::Lipsum->new( what => 'words' );
     my $lipsum = WWW::Lipsum->new( what => 'bytes' );
 
-__Optional.__ Specifies in what form to get the
+**Optional.** Specifies in what form to get the
 _Lorem Ipsum_ text. Valid values are lowercase strings
 `paras`, `lists`, `words`, and `bytes` that mean to get the text
 as `paragraps`, `lists`, `words`, or `bytes` respectively.
-__Defaults to:__ `paras`.
+**Defaults to:** `paras`.
 
 The meaning is most relevant for the `amount` argument (see below). The
 `lists` value will cause generation of variable-item-number lists of
-_Lorem Ipsum_ text. __Note:__ there seems to be very loose adherence
+_Lorem Ipsum_ text. **Note:** there seems to be very loose adherence
 to the `amount` you specified and what you get when you
 request `bytes`, and the value seems to be ignored
 if `amount` is set too low.
@@ -82,32 +82,32 @@ if `amount` is set too low.
 
     my $lipsum = WWW::Lipsum->new( amount => 10 );
 
-__Optional.__ __Takes__ a positive integer as a value. Large values
+**Optional.** **Takes** a positive integer as a value. Large values
 will likely be abridged by [www.lipsum.com](http://www.lipsum.com/) to something reasonable.
 Specifies the number of `what` (see above) things to get.
-__Defaults to:__ `5`.
+**Defaults to:** `5`.
 
 ### `html`
 
     my $lipsum = WWW::Lipsum->new( html => 1 );
 
-__Optional.__ __Takes__ true or false values. __Specifies__ whether to wrap
+**Optional.** **Takes** true or false values. **Specifies** whether to wrap
 _Lorem Ipsum_ text in HTML markup (will wrap in HTML when set to
 a true value). This will be `<ul>/<li>`
 elements when `what` is set to `lists` and `<p>` elements
 for everything else. When set to false, paragraphs and lists will
-be separated by double new lines. __Defaults to:__ `0` (false).
+be separated by double new lines. **Defaults to:** `0` (false).
 
 ### `start`
 
     my $lipsum = WWW::Lipsum->new( start => 0 );
 
-__Optional.__ __Takes__ true or false values as a value. When set
+**Optional.** **Takes** true or false values as a value. When set
 to a true value, will ask [www.lipsum.com](http://www.lipsum.com/)
 to start the generated
-text with _"Lorem Ipsum"_. __Defaults to:__ `1` (true)
+text with _"Lorem Ipsum"_. **Defaults to:** `1` (true)
 
-__Note:__ it seems sometimes [www.lipsum.com](http://www.lipsum.com/)
+**Note:** it seems sometimes [www.lipsum.com](http://www.lipsum.com/)
 would return text that starts with _"Lorem Ipsum"_ simply by chance.
 
 ## `generate`
@@ -126,12 +126,12 @@ would return text that starts with _"Lorem Ipsum"_ simply by chance.
 
 Accesses [www.lipsum.com](http://www.lipsum.com/) to obtain requested
 chunk of _Lorem Ipsum_ text.
-__Takes__ the same arguments as `new` (see above); all __optional__.
-__On success__ returns generated _Lorem Ipsum_ text. __On failure__
+**Takes** the same arguments as `new` (see above); all **optional**.
+**On success** returns generated _Lorem Ipsum_ text. **On failure**
 returns `undef` or an empty list, depending on the context, and
 the reason for failure will be available via the `->error` method.
 
-__Note:__ if you call `->generate` with arguments, the new
+**Note:** if you call `->generate` with arguments, the new
 values will persist for all subsequent calls to `->generate`,
 until you change them either by, again, passing arguments to
 `->generate`, or by using accessor methods.
@@ -148,7 +148,7 @@ text.
     $lipsum->generate or die $lipsum->error;
     $text = $lipsum->lipsum;
 
-__Takes__ no arguments. Must be called after a successful call to
+**Takes** no arguments. Must be called after a successful call to
 `->generate`. Returns the same thing the last successful call
 to `->generate` returned.
 
@@ -157,7 +157,7 @@ to `->generate` returned.
     $lipsum->generate
         or die 'Error occured: ' . $lipsum->error;
 
-__Takes__ no arguments. Returns the human-readable message, explaining
+**Takes** no arguments. Returns the human-readable message, explaining
 why the last call to `->generate` failed.
 
 ## `what`
@@ -168,11 +168,11 @@ why the last call to `->generate` failed.
     $lipsum->what('words');
     $lipsum->what('bytes');
 
-__Takes__ a single __optional__ argument that is the same as the value for the
+**Takes** a single **optional** argument that is the same as the value for the
 `what` argument of the `->new` method.
 When given an argument, modifies the currently active value for the
 `what` argument.
-__Returns__ the currently active value of `what` argument (which
+**Returns** the currently active value of `what` argument (which
 will be the provided argument, if one is given).
 See `->new` method for more info.
 
@@ -182,10 +182,10 @@ See `->new` method for more info.
     $lipsum->start(0);
     $lipsum->start(1);
 
-__Takes__ a single __optional__ argument that is the same as the value for the
+**Takes** a single **optional** argument that is the same as the value for the
 `start` argument of the `->new` method.
 When given an argument, modifies the currently active value for the
-`start` argument. __Returns__ the currently active value of `start`
+`start` argument. **Returns** the currently active value of `start`
 argument (which will be the provided argument, if one is given).
 See `->new` method for more info.
 
@@ -195,7 +195,7 @@ See `->new` method for more info.
     $lipsum->amount(50);
     $lipsum->amount(15);
 
-__Takes__ a single __optional__ argument that is the same as the value for the
+**Takes** a single **optional** argument that is the same as the value for the
 `amount` argument of the `->new` method.
 When given an argument, modifies the currently active value for the
 `amount` argument.
@@ -207,10 +207,10 @@ See `->new` method for more info.
     $lipsum->html(1);
     $lipsum->html(0);
 
-__Takes__ a single __optional__ argument that is the same as the value for the
+**Takes** a single **optional** argument that is the same as the value for the
 `html` argument of the `->new` method.
 When given an argument, modifies the currently active value for the
-`html` argument. __Returns__ the currently active value of `html`
+`html` argument. **Returns** the currently active value of `html`
 argument (which will be the provided argument, if one is given).
 See `->new` method for more info.
 
