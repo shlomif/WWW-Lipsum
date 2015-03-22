@@ -34,24 +34,39 @@ sub generate {
     $self->lipsum(undef);
 
     $self->_prep_args( @_ );
-    my $res = $self->_ua->post( 'http://lipsum.com/feed/html', {
-        amount => $self->amount,
-        what   => $self->what,
-        start  => $self->start ? 1 : 0,
-        generate => 'Generate Lorem Ipsum',
-    });
 
-    return $self->_set_error( 'Network error: ' . $res->status_line )
-        unless $res->is_success;
+    # sometimes we fail to get decent Lipsum content,
+    # so let's retry once in that case and bail out if we still fail
+    my $did_already_retry = 0;
+    my ( $res, $dom );
+    GET_LIPSUM: {
+        $res = $self->_ua->post( 'http://lipsum.com/feed/html', {
+            amount => $self->amount,
+            what   => $self->what,
+            start  => $self->start ? 1 : 0,
+            generate => 'Generate Lorem Ipsum',
+        });
 
-    my $dom = eval {
-        Mojo::DOM->new( $res->decoded_content )
-            ->find('#lipsum')
-            ->first
-            ->children;
-    };
-    @$ and return $self->_set_error("Parsing error: $@");
-    $dom or return $self->_set_error("Unknown error");
+        return $self->_set_error( 'Network error: ' . $res->status_line )
+            unless $res->is_success;
+
+        $dom = eval {
+            Mojo::DOM->new( $res->decoded_content )
+                ->find('#lipsum')
+                ->first
+                ->children;
+        };
+        @$ and return $self->_set_error("Parsing error: $@");
+        unless ( $dom ) {
+            redo GET_LIPSUM unless $did_already_retry;
+            $did_already_retry = 1;
+
+            return $self->_set_error(
+                'Unknown error. HTML we got from Lipsum is: '
+                    . $res->decoded_content
+            );
+        }
+    }
 
     $self->html
         or return $self->lipsum(
