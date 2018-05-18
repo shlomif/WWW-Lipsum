@@ -1,5 +1,8 @@
 Revision history for WWW-Lipsum
 
+1.001013  2018-05-18
+        - Fix tests with recent Mojos. (Fixes #7)
+
 1.001012  2015-03-21
         - Attempted to resolve cases where we get 'Unknown error'
           and expanded the error message so we could debug
